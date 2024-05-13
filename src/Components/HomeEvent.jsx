@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Button,
   Container,
@@ -23,9 +23,9 @@ const HomeEvent = () => {
     redirect: "follow",
   };
 
-  fetch("https://api.predicthq.com/v1/events", requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
+  fetch("https://api.predicthq.com/v1/events?country=NG", requestOptions)
+    .then((response) => response.json())
+    .then((result) => console.log(result.title))
     .catch((error) => console.error(error));
 
   return (
@@ -72,29 +72,31 @@ const HomeEvent = () => {
         <Row>
           <div>
             <Card body>
-              <div>
-                <div class="d-flex justify-content-around">
-                  <div>
-                    <h3></h3>
-                    <p>Birigui, São Paulo, Brazil</p>
-                    <p>Fri, 9 Feb 2024-Wed, 14 Feb 2024-0300 (6-days)</p>
+              {
+                <div>
+                  <div class="d-flex justify-content-around">
                     <div>
-                      <p>
-                        <FcHome className="me-2" />
-                        FESTIVALS
-                      </p>
+                      <h3>{}</h3>
+                      <p>Birigui, São Paulo, Brazil</p>
+                      <p>Fri, 9 Feb 2024-Wed, 14 Feb 2024-0300 (6-days)</p>
+                      <div>
+                        <p>
+                          <FcHome className="me-2" />
+                          FESTIVALS
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <pre>$480,005,100</pre>
+                      <pre>Predicted Event Spend (Usd) </pre>
+                    </div>
+                    <div>
+                      <pre>150,0000</pre>
+                      <pre>PHQ Attendance</pre>
                     </div>
                   </div>
-                  <div>
-                    <pre>$480,005,100</pre>
-                    <pre>Predicted Event Spend (Usd) </pre>
-                  </div>
-                  <div>
-                    <pre>150,0000</pre>
-                    <pre>PHQ Attendance</pre>
-                  </div>
                 </div>
-              </div>
+              }
             </Card>
           </div>
         </Row>
