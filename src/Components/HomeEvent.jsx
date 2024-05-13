@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -10,6 +11,15 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FcHome } from "react-icons/fc";
 const HomeEvent = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://api.predicthq.com/v1/eventsHTTP/1.1Accept:application/jsonAuthorization:BearerfNmMC0qznqLKN0X2tfT_jfN0YqKstEBfBqmPTRfA"
+    )
+      .then((res) => res.json())
+      .then((response) => setData(response));
+  }, []);
+
   return (
     <>
       <Container>
