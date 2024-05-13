@@ -11,14 +11,22 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FcHome } from "react-icons/fc";
 const HomeEvent = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(
-      "https://api.predicthq.com/v1/eventsHTTP/1.1Accept:application/jsonAuthorization:BearerfNmMC0qznqLKN0X2tfT_jfN0YqKstEBfBqmPTRfA"
-    )
-      .then((res) => res.json())
-      .then((response) => setData(response));
-  }, []);
+  const myHeaders = new Headers();
+  myHeaders.append(
+    "Authorization",
+    "Bearer fNmMC0qznqLKN0X2tfT_jfN0YqKstEBfBqmPTRfA"
+  );
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  fetch("https://api.predicthq.com/v1/events", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
 
   return (
     <>
@@ -57,7 +65,6 @@ const HomeEvent = () => {
               </Navbar.Collapse>
             </Container>
           </Navbar>
-          <div></div>
         </Row>
       </Container>
 
@@ -68,7 +75,7 @@ const HomeEvent = () => {
               <div>
                 <div class="d-flex justify-content-around">
                   <div>
-                    <h3>Carnaval de São Paulo</h3>
+                    <h3></h3>
                     <p>Birigui, São Paulo, Brazil</p>
                     <p>Fri, 9 Feb 2024-Wed, 14 Feb 2024-0300 (6-days)</p>
                     <div>
