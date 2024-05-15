@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -25,8 +25,13 @@ const HomeEvent = () => {
 
   fetch("https://api.predicthq.com/v1/events?country=NG", requestOptions)
     .then((response) => response.json())
-    .then((result) => console.log(result.title))
-    .catch((error) => console.error(error));
+    .then((data) => console.log(data.results))
+    // .then((result) => console.log(result))
+    // .catch((error) => console.error(error));
+
+  useEffect(() => {
+    new Headers();
+  });
 
   return (
     <>
@@ -74,7 +79,7 @@ const HomeEvent = () => {
             <Card body>
               {
                 <div>
-                  <div class="d-flex justify-content-around">
+                  <div className="d-flex justify-content-around">
                     <div>
                       <h3>{}</h3>
                       <p>Birigui, São Paulo, Brazil</p>
