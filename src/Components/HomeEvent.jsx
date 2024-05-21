@@ -10,13 +10,24 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FcHome } from "react-icons/fc";
+import axios from "axios";
 
 const HomeEvent = () => {
-  fetch("https://catfact.ninja/fact")
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+  // fetch()
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //   });
+  const [catFact, setCatFact] = useState("");
+
+  const fetchCatFact = () => {
+    axios.get("https://catfact.ninja/fact").then((res) => {
+      setCatFact(res.data.fact);
     });
+  };
+  useEffect(() => {
+    fetchCatFact();
+  }, []);
 
   // const myHeaders = new Headers();
   // myHeaders.append(
@@ -114,8 +125,10 @@ const HomeEvent = () => {
         </Row>
       </Container> */}
       <Container className="d-flex justify-content-center mt-5">
-        <button className="text-center">Generate cat fact</button>
-        <p></p>
+        <div>
+          <button onClick={fetchCatFact}>Generate cat fact</button>
+          <p> {catFact} </p>
+        </div>
       </Container>
     </>
   );
