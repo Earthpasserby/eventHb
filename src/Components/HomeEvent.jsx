@@ -10,32 +10,39 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FcHome } from "react-icons/fc";
+
 const HomeEvent = () => {
-  const myHeaders = new Headers();
-  myHeaders.append(
-    "Authorization",
-    "Bearer fNmMC0qznqLKN0X2tfT_jfN0YqKstEBfBqmPTRfA"
-  );
+  fetch("https://catfact.ninja/fact")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 
-  const requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
+  // const myHeaders = new Headers();
+  // myHeaders.append(
+  //   "Authorization",
+  //   "Bearer fNmMC0qznqLKN0X2tfT_jfN0YqKstEBfBqmPTRfA"
+  // );
 
-  fetch("https://api.predicthq.com/v1/events?country=NG", requestOptions)
-    .then((response) => response.json())
-    .then((data) => console.log(data.results));
+  // const requestOptions = {
+  //   method: "GET",
+  //   headers: myHeaders,
+  //   redirect: "follow",
+  // };
+
+  // fetch("https://api.predicthq.com/v1/events?country=NG", requestOptions)
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data.results));
   // .then((result) => console.log(result))
   // .catch((error) => console.error(error));
 
-  useEffect(() => {
-    new Headers();
-  });
+  // useEffect(() => {
+  //   new Headers();
+  // });
 
   return (
     <>
-      <Container>
+      {/* <Container>
         <Row>
           <Navbar expand="lg">
             <Container fluid>
@@ -71,9 +78,9 @@ const HomeEvent = () => {
             </Container>
           </Navbar>
         </Row>
-      </Container>
+      </Container> */}
 
-      <Container>
+      {/* <Container>
         <Row>
           <div>
             <Card body>
@@ -105,8 +112,13 @@ const HomeEvent = () => {
             </Card>
           </div>
         </Row>
+      </Container> */}
+      <Container className="d-flex justify-content-center mt-5">
+        <button className="text-center">Generate cat fact</button>
+        <p></p>
       </Container>
     </>
   );
 };
+
 export default HomeEvent;
