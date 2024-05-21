@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -10,21 +10,7 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FcHome } from "react-icons/fc";
-
-
-
-
-
 const HomeEvent = () => {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      items:[],
-      isLoaded:false,
-    }
-  }
-
   const myHeaders = new Headers();
   myHeaders.append(
     "Authorization",
@@ -37,23 +23,15 @@ const HomeEvent = () => {
     redirect: "follow",
   };
 
- componentDidMount() {
-   fetch("https://api.predicthq.com/v1/events?country=NG", requestOptions)
+  fetch("https://api.predicthq.com/v1/events?country=NG", requestOptions)
     .then((response) => response.json())
-    .then(json => {
-      this.setState({
-        isLoaded:true,
-        items:json,
-      })
+    .then((data) => console.log(data.results));
+  // .then((result) => console.log(result))
+  // .catch((error) => console.error(error));
 
-    })
-    .then((data) => console.log(data))
-    // .then((result) => console.log(result))
-    // .catch((error) => console.error(error));
-
- }
-    
- 
+  useEffect(() => {
+    new Headers();
+  });
 
   return (
     <>
